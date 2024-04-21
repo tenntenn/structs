@@ -15,7 +15,7 @@ struct{
 	S: "sample",
 }
 */
-Merge(A{N:100}, B{S:"sample"})
+structs.Merge(A{N:100}, B{S:"sample"})
 ```
 
 ```go
@@ -28,7 +28,7 @@ struct{
 	S: "sample",
 }
 */
-Of("N", 100, "S", "sample")
+structs.Of("N", 100, "S", "sample")
 
 /*
 struct{
@@ -39,7 +39,7 @@ struct{
 	S: "sample",
 }
 */
-Of("N", 100, `json:"n"`, "S", "sample", `json:"s"`)
+structs.Of("N", 100, `json:"n"`, "S", "sample", `json:"s"`)
 ```
 
 
