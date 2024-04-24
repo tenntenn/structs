@@ -28,7 +28,7 @@ struct{
 	S: "sample",
 }
 */
-structs.Of("N", 100, "S", "sample")
+structs.Of(structs.F("N", 100), structs.F("S", "sample"))
 
 /*
 struct{
@@ -39,7 +39,7 @@ struct{
 	S: "sample",
 }
 */
-structs.Of("N", 100, `json:"n"`, "S", "sample", `json:"s"`)
+structs.Of(structs.F("N", 100, structs.Tag(`json:"n"`)), structs.F("S", "sample", structs.Tag(`json:"s"`)))
 ```
 
 

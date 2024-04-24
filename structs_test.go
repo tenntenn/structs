@@ -12,6 +12,8 @@ func TestMerge(t *testing.T) {
 
 	vs := func(vs ...any) []any { return vs }
 	of := structs.Of
+	F := structs.F
+	Tag := structs.Tag[string]
 
 	type A struct{ N int }
 	type B struct{ S string }
@@ -29,10 +31,10 @@ func TestMerge(t *testing.T) {
 		want any
 	}{
 		{"zero", vs(), of()},
-		{"single", vs(A{N: 100}), of("N", 100)},
-		{"two", vs(A{N: 100}, B{S: "test"}), of("N", 100, "S", "test")},
-		{"tag", vs(C{N: 100}, D{S: "test"}), of("N", 100, `json:"n"`, "S", "test", `json:"s"`)},
-		{"unexported", vs(E{n: 100}, B{S: "test"}), of("S", "test")},
+		{"single", vs(A{N: 100}), of(F("N", 100))},
+		{"two", vs(A{N: 100}, B{S: "test"}), of(F("N", 100), F("S", "test"))},
+		{"tag", vs(C{N: 100}, D{S: "test"}), of(F("N", 100, Tag(`json:"n"`)), F("S", "test", Tag(`json:"s"`)))},
+		{"unexported", vs(E{n: 100}, B{S: "test"}), of(F("S", "test"))},
 	}
 
 	for _, tt := range cases {
